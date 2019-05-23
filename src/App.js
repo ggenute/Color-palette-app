@@ -5,9 +5,7 @@ import Palette from './Palette';
 class App extends Component {
   render() {
     return (
-      <div className="App" >
-        <Palette {...seedColors[4]} />
-      </div>
+      <Palette {...seedColors[4]} />
     );
   }
 }
