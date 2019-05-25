@@ -1,3 +1,5 @@
+// For copying content to the clipboard we use https://www.npmjs.com/package/react-copy-to-clipboard
+
 import React, { Component } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import './ColorBox.css';
