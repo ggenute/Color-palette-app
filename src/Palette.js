@@ -1,3 +1,5 @@
+// React slider: https://www.npmjs.com/package/rc-slider
+
 import React, { Component } from 'react';
 import ColorBox from './ColorBox';
 import './Palette.css';
