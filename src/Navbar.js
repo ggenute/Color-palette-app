@@ -1,11 +1,28 @@
+// https://material-ui.com/
+
 import React, { Component } from 'react';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import './Navbar.css';
 
 class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      format: "hex"
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(evt) {
+    this.setState({ format: evt.target.value });
+    // this.props.handleChange(this.state.format); BAD EXAMPLE with not correct value (because of asynchronous update)
+    this.props.handleChange(evt.target.value);
+  }
   render() {
     const { level, changeLevel } = this.props;
+    const { format } = this.state;
     return (
       <header className="Navbar">
         <div className="logo">
@@ -22,6 +39,14 @@ class Navbar extends Component {
               onAfterChange={changeLevel}
             />
           </div>
+        </div>
+        <div className="Select-container">
+          <Select value={format} onChange={this.handleChange}>
+            <MenuItem value="hex">HEX - #fffffff</MenuItem>
+            <MenuItem value="rgb">RGB - rgb 255, 255, 255</MenuItem>
+            <MenuItem value="rgba">RGBA - rgba 255, 255, 255, 1.0</MenuItem>
+          </Select>
+
         </div>
       </header>
     );
