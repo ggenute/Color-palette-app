@@ -23,7 +23,7 @@ function generatePalette(starterPalette) {
         hex: scale[i],
         rgb: chroma(scale[i]).css(),
         // rgb(23, 45, 1) -> rgba(23, 45, 1, 1.0)
-        rgba: chroma(scale[i]).css().replace("rgb", "rgba").replace(")", "1.0)")
+        rgba: chroma(scale[i]).css().replace("rgb", "rgba").replace(")", ",1.0)")
       });
     }
   }
