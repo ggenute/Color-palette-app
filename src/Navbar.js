@@ -13,7 +13,6 @@ import Slider from 'rc-slider';
 import styles from './styles/NavbarStyles';
 import 'rc-slider/assets/index.css';
 
-
 class Navbar extends Component {
   constructor(props) {
     super(props);
