@@ -59,7 +59,7 @@ class PaletteList extends Component {
             {palettes.map((palette) => (
               <CSSTransition
                 key={palette.id}
-                className="fade"
+                classNames="fade"
                 timeout={500}
               >
                 <MiniPalette
