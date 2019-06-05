@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import seedColors from './seedColors';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PaletteList from './PaletteList';
 import Palette from './Palette';
-import NewPaletteForm from './NewPaletteForm';
 import SingleColorPalette from './SingleColorPalette';
-import {
-  CSSTransition,
-  TransitionGroup,
-} from 'react-transition-group';
-import { generatePalette } from './colorHelpers';
 import Page from './Page';
+import NewPaletteForm from './NewPaletteForm';
+import seedColors from './seedColors';
+import { generatePalette } from './colorHelpers';
 
 class App extends Component {
   constructor(props) {
@@ -22,34 +19,30 @@ class App extends Component {
     this.savePalette = this.savePalette.bind(this);
     this.findPalette = this.findPalette.bind(this);
     this.deletePalette = this.deletePalette.bind(this);
-  }
+  };
   findPalette(id) {
     return this.state.palettes.find(function (palette) {
       return palette.id === id;
     });
-  }
-
+  };
   deletePalette(id) {
     this.setState(
       st => ({ palettes: st.palettes.filter(palette => palette.id !== id) }),
       this.syncLocalStorage
     );
-  }
-
+  };
   savePalette(newPalette) {
     this.setState(
       { palettes: [...this.state.palettes, newPalette] },
       this.syncLocalStorage
     );
-  }
-
+  };
   syncLocalStorage() {
     window.localStorage.setItem(
       "palettes",
       JSON.stringify(this.state.palettes)
     );
-  }
-
+  };
   render() {
     return (
       <Route render={({ location }) => (

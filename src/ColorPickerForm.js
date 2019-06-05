@@ -1,11 +1,10 @@
 // React color picker https://www.npmjs.com/package/react-color
 // Form validations https://www.npmjs.com/package/react-material-ui-form-validator
-
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { ChromePicker } from 'react-color';
+import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/ColorPickerFormStyles';
 
 class ColorPickerForm extends Component {
@@ -18,8 +17,7 @@ class ColorPickerForm extends Component {
     this.updateCurrentColor = this.updateCurrentColor.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
+  };
   componentDidMount() {
     ValidatorForm.addValidationRule('isColorNameUnique', value =>
       this.props.colors.every(
@@ -31,18 +29,15 @@ class ColorPickerForm extends Component {
         ({ color }) => color !== this.state.currentColor
       )
     );
-  }
-
+  };
   updateCurrentColor(newColor) {
     this.setState({ currentColor: newColor.hex });
-  }
-
+  };
   handleChange(evt) {
     this.setState({
       [evt.target.name]: evt.target.value
     });
-  }
-
+  };
   handleSubmit() {
     const newColor = {
       color: this.state.currentColor,
@@ -50,8 +45,7 @@ class ColorPickerForm extends Component {
     };
     this.props.addNewColor(newColor);
     this.setState({ newColorName: "" })
-  }
-
+  };
   render() {
     const { paletteIsFull, classes } = this.props;
     const { currentColor, newColorName } = this.state;

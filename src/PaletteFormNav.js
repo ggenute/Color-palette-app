@@ -1,5 +1,4 @@
 // Form validations https://www.npmjs.com/package/react-material-ui-form-validator
-
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
@@ -24,23 +23,21 @@ class PaletteFormNav extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.showForm = this.showForm.bind(this);
     this.hideForm = this.hideForm.bind(this);
-  }
-
+  };
   handleChange(evt) {
     this.setState({
       [evt.target.name]: evt.target.value
     });
-  }
-
+  };
   showForm() {
     this.setState({ formShowing: true });
-  }
-
+  };
   hideForm() {
     this.setState({ formShowing: false });
-  }
+  };
   render() {
-    const { classes, open, palettes, handleSubmit } = this.props;
+    const { classes, open, palettes, handleSubmit, handleDrawerOpen } = this.props;
+    const { formShowing } = this.state;
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -55,7 +52,7 @@ class PaletteFormNav extends Component {
             <IconButton
               color="inherit"
               aria-label="Open drawer"
-              onClick={this.props.handleDrawerOpen}
+              onClick={handleDrawerOpen}
               className={classNames(classes.menuButton, { [classes.hide]: open })}
             >
               <AddToPhotosIcon />
@@ -79,7 +76,7 @@ class PaletteFormNav extends Component {
             </Button>
           </div>
         </AppBar>
-        {this.state.formShowing && (
+        {formShowing && (
           <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} hideForm={this.hideForm} />
         )}
       </div >

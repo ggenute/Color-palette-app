@@ -1,5 +1,4 @@
 // Tool for dragging and dropping color squares https://github.com/clauderic/react-sortable-hoc
-
 import React from 'react';
 import DraggableColorBox from './DraggableColorBox';
 import { SortableContainer } from 'react-sortable-hoc';

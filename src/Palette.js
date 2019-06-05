@@ -1,5 +1,4 @@
 // React slider: https://www.npmjs.com/package/rc-slider
-
 import React, { Component } from 'react';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
@@ -16,13 +15,13 @@ class Palette extends Component {
     };
     this.changeLevel = this.changeLevel.bind(this);
     this.changeFormat = this.changeFormat.bind(this);
-  }
+  };
   changeLevel(level) {
     this.setState({ level });
-  }
+  };
   changeFormat(val) {
     this.setState({ format: val });
-  }
+  };
   render() {
     const { colors, paletteName, emoji, id } = this.props.palette;
     const { classes } = this.props;

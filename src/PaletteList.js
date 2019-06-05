@@ -1,8 +1,8 @@
 // React transition group https://reactcommunity.org/react-transition-group/css-transition
-
 import React, { Component } from 'react';
 import MiniPalette from './MiniPalette';
 import { Link } from 'react-router-dom';
+import { CSSTransition, TransitionGroup, } from 'react-transition-group';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Avatar from '@material-ui/core/Avatar';
@@ -12,10 +12,6 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
-import {
-  CSSTransition,
-  TransitionGroup,
-} from 'react-transition-group';
 import { withStyles } from '@material-ui/styles';
 import blue from '@material-ui/core/colors/blue';
 import red from '@material-ui/core/colors/red';
@@ -32,20 +28,20 @@ class PaletteList extends Component {
     this.closeDialog = this.closeDialog.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.goToPalette = this.goToPalette.bind(this);
-  }
+  };
   openDialog(id) {
     this.setState({ openDeleteDialog: true, deletetingId: id });
-  }
+  };
   closeDialog() {
     this.setState({ openDeleteDialog: false, deletetingId: "" });
-  }
+  };
   goToPalette(id) {
     this.props.history.push(`/palette/${id}`);
-  }
+  };
   handleDelete() {
     this.props.deletePalette(this.state.deletetingId);
     this.closeDialog();
-  }
+  };
   render() {
     const { palettes, classes } = this.props;
     const { openDeleteDialog } = this.state;
@@ -66,7 +62,6 @@ class PaletteList extends Component {
                 <MiniPalette
                   {...palette}
                   goToPalette={this.goToPalette}
-                  // handleDelete={deletePalette}
                   openDialog={this.openDialog}
                   key={palette.id}
                   id={palette.id}

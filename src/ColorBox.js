@@ -1,11 +1,10 @@
 // For copying content to the clipboard we use https://www.npmjs.com/package/react-copy-to-clipboard
-
 import React, { Component } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Link } from 'react-router-dom';
-import styles from "./styles/ColorBoxStyles";
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/styles';
+import styles from "./styles/ColorBoxStyles";
 
 class ColorBox extends Component {
   constructor(props) {
@@ -14,12 +13,12 @@ class ColorBox extends Component {
       copied: false
     };
     this.changeCopyState = this.changeCopyState.bind(this);
-  }
+  };
   changeCopyState() {
     this.setState({ copied: true }, () => {
       setTimeout(() => this.setState({ copied: false }), 1500);
     });
-  }
+  };
   render() {
     const { name, background, moreUrl, showingFullPalette, classes } = this.props;
     const { copied } = this.state;
@@ -35,7 +34,7 @@ class ColorBox extends Component {
           })}>
             <h1>COPIED!</h1>
             <p className={classes.copyText}>
-              {this.props.background}
+              {background}
             </p>
           </div>
           <div>
@@ -51,7 +50,6 @@ class ColorBox extends Component {
           )}
         </div>
       </CopyToClipboard >
-
     );
   }
 }

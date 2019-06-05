@@ -1,5 +1,4 @@
 // Tool for dragging and dropping color squares https://github.com/clauderic/react-sortable-hoc
-
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -18,7 +17,7 @@ import styles from './styles/NewPaletteFormStyles';
 class NewPaletteForm extends Component {
   static defaultProps = {
     maxColors: 20
-  }
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -31,30 +30,24 @@ class NewPaletteForm extends Component {
     this.removeColor = this.removeColor.bind(this);
     this.clearColors = this.clearColors.bind(this);
     this.addRandomColor = this.addRandomColor.bind(this);
-  }
-
+  };
   handleDrawerOpen = () => {
     this.setState({ open: true });
   };
-
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
-
   addNewColor(newColor) {
     this.setState({ colors: [...this.state.colors, newColor], newColorName: "" });
-  }
-
+  };
   handleChange(evt) {
     this.setState({
       [evt.target.name]: evt.target.value
     });
-  }
-
+  };
   clearColors() {
     this.setState({ colors: [] });
-  }
-
+  };
   addRandomColor() {
     const allColors = this.props.palettes.map(palette => (
       palette.colors
@@ -62,27 +55,23 @@ class NewPaletteForm extends Component {
     var rand = Math.floor(Math.random() * allColors.length);
     const randomColor = allColors[rand];
     this.setState({ colors: [...this.state.colors, randomColor] });
-  }
-
+  };
   handleSubmit(newPalette) {
     newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");
     newPalette.colors = this.state.colors;
     this.props.savePalette(newPalette);
     this.props.history.push("/");
-  }
-
+  };
   removeColor(colorName) {
     this.setState({
       colors: this.state.colors.filter(color => color.name !== colorName)
     });
-  }
-
+  };
   onSortEnd = ({ oldIndex, newIndex }) => {
     this.setState(({ colors }) => ({
       colors: arrayMove(colors, oldIndex, newIndex),
     }));
   };
-
   render() {
     const { classes, maxColors, palettes } = this.props;
     const { open, colors } = this.state;
@@ -142,7 +131,7 @@ class NewPaletteForm extends Component {
         >
           <div className={classes.drawerHeader} />
           <DraggableColorList
-            colors={this.state.colors}
+            colors={colors}
             removeColor={this.removeColor}
             axis="xy"
             onSortEnd={this.onSortEnd}

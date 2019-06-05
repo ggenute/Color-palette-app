@@ -9,9 +9,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Slider from 'rc-slider';
-
-import styles from './styles/NavbarStyles';
 import 'rc-slider/assets/index.css';
+import styles from './styles/NavbarStyles';
 
 class Navbar extends Component {
   constructor(props) {
@@ -22,18 +21,18 @@ class Navbar extends Component {
     };
     this.handleFormatChange = this.handleFormatChange.bind(this);
     this.closeSnackbar = this.closeSnackbar.bind(this);
-  }
+  };
   handleFormatChange(evt) {
     this.setState({ format: evt.target.value, open: true });
     // this.props.handleChange(this.state.format); BAD EXAMPLE with not correct value (because of asynchronous update)
     this.props.handleChange(evt.target.value);
-  }
+  };
   closeSnackbar() {
     this.setState({ open: false });
-  }
+  };
   render() {
     const { level, changeLevel, showingAllColors, classes } = this.props;
-    const { format } = this.state;
+    const { format, open } = this.state;
     return (
       <header className={classes.Navbar}>
         <div className={classes.logo}>
@@ -62,7 +61,7 @@ class Navbar extends Component {
         </div>
         <Snackbar
           anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-          open={this.state.open}
+          open={open}
           autoHideDuration={3000}
           message={<span id="message-id">Format Changed to {format.toUpperCase()}!</span>}
           ContentProps={{
